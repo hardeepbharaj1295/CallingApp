@@ -37,6 +37,11 @@ public class CallingActivity extends AppCompatActivity {
     }
 
     public void calling() {
+        if (editText.getText().toString().equals(""))
+        {
+            Toast.makeText(this, "Please enter the number", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + editText.getText().toString()));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
