@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,5 +48,19 @@ public class CallingActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                calling();
+            }
+            else
+            {
+                Toast.makeText(this, "Please Give the permission", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }
